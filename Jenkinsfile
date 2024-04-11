@@ -1,34 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Build') { 
+        stage('Build') {
             steps {
-                script {
-                    // Detect the operating system
-                    def isUnix = isUnix()
-
-                    // Execute npm install using the appropriate step based on the OS
-                    if (isUnix) {
-                        sh 'npm install'
-                    } else {
-                        bat 'npm install'
-                    }
-                }
+                sh 'npm install'
             }
         }
-        stage('Test') {
+        stage('Test') { 
             steps {
-                script {
-                    // Detect the operating system
-                    def isUnix = isUnix()
-
-                    // Execute test.sh using the appropriate step based on the OS
-                    if (isUnix) {
-                        sh './jenkins/scripts/test.sh'
-                    } else {
-                        bat '.\\jenkins\\scripts\\test.bat'
-                    }
-                }
+                sh './jenkins/scripts/test.sh' 
             }
         }
     }
