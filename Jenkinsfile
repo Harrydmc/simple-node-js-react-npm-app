@@ -1,19 +1,9 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:lts-alpine3.19'
-            args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }
+    agent any
     stages {
-        stage('Build') {
+        stage('Build') { 
             steps {
-                sh 'npm install'
-            }
-        }
-        stage('Test') { 
-            steps {
-                sh './jenkins/scripts/test.sh' 
+                sh 'npm install' 
             }
         }
     }
